@@ -45,23 +45,23 @@ public class ProviderDataService {
 							.build();
 		
 		secondCustomer = Customer.builder()
-							.name("First Customer")
-							.email("firstcst@gmail.com")
+							.name("Second Customer")
+							.email("secondcst@gmail.com")
 							.build();
 		
 		thirdCustomer = Customer.builder()
-							.name("First Customer")
-							.email("firstcst@gmail.com")
+							.name("Third Customer")
+							.email("thirdcst@gmail.com")
 							.build();
 		
 		fourthCustomer = Customer.builder()
-							.name("First Customer")
-							.email("firstcst@gmail.com")
+							.name("Fourth Customer")
+							.email("fourthcst@gmail.com")
 							.build();
 		
 		fifthCustomer = Customer.builder()
-							.name("First Customer")
-							.email("firstcst@gmail.com")
+							.name("Fifth Customer")
+							.email("fifthcst@gmail.com")
 							.build();
 	}
 	
@@ -106,10 +106,11 @@ public class ProviderDataService {
 				products.add(productB);
 				
 			}else if (i==2) {
+				c = secondCustomer;
+				
 				products.add(productB);
 				products.add(productC);			
-				products.add(productD);
-				c = secondCustomer;
+				products.add(productD);				
 			}else if (i==3) {
 				c = thirdCustomer;
 				
@@ -124,6 +125,7 @@ public class ProviderDataService {
 				products.add(productE);
 			}else if (i==5) {
 				c = fifthCustomer;
+				
 				products.add(productA);
 				products.add(productB);
 				products.add(productC);
@@ -144,9 +146,15 @@ public class ProviderDataService {
 			Order order = Order.builder()
 							.customer(c)
 							.orderLines(lines)
-							.build();
+							.build();					
 			
 			ordersList.add(order);
 		}
+		
+		Order order = Order.builder()
+						.customer(firstCustomer)
+						.orderLine(OrderLine.builder().product(productE).quantity(10).build())
+						.build();
+		ordersList.add(order);
 	}
 }

@@ -16,7 +16,7 @@ public class OrderLine {
 	
 	private Integer quantity;
 	
-	public BigDecimal orderLinePrice() {
+	public BigDecimal getOrderLineTotal() {
 		return getProduct().getPrice().multiply(new BigDecimal(quantity));
 	}
 }

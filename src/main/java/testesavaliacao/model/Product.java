@@ -5,14 +5,17 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Product implements Comparable<Product>{
 	
+	@EqualsAndHashCode.Include
 	private String description;
 	
 	private Integer stockQuantity;
