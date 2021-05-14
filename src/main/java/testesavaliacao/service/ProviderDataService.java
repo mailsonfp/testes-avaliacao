@@ -12,7 +12,7 @@ import testesavaliacao.model.Order;
 import testesavaliacao.model.OrderLine;
 import testesavaliacao.model.Product;
 
-public class ProviderDataService {
+public abstract class ProviderDataService {
 	
 	static Customer firstCustomer;
 	static Customer secondCustomer;
@@ -93,12 +93,12 @@ public class ProviderDataService {
 	}
 	
 	private static void initOrders() {
-		ordersList = new ArrayList<Order>();
+		ordersList = new ArrayList<>();
 		
 		for(Integer i = 1; i<=5; i++) {
 			
 			Customer c = Customer.builder().build();
-			List<Product> products = new ArrayList<Product>();
+			List<Product> products = new ArrayList<>();
 			
 			if(i==1) {
 				c = firstCustomer;
@@ -133,7 +133,7 @@ public class ProviderDataService {
 				products.add(productE);				
 			}
 			
-			Set<OrderLine> lines = new HashSet<OrderLine>();
+			Set<OrderLine> lines = new HashSet<>();
 			products.forEach(p -> {
 				OrderLine orderLine = OrderLine.builder()
 										.product(p)

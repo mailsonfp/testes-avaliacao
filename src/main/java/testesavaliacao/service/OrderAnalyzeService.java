@@ -17,21 +17,16 @@ import testesavaliacao.model.Customer;
 import testesavaliacao.model.Order;
 import testesavaliacao.model.Product;
 
-public class OrderAnalyzeService {
+public abstract class OrderAnalyzeService {
 	
 	public static List<Product> findMostPopularProducts(Stream<Order> orders){
 		List<Order> ordersList = orders.collect(Collectors.toList());
-		List<Product> productsList = new ArrayList<Product>(); 
+		List<Product> productsList = new ArrayList<>(); 
 		
-		ordersList.forEach(order -> {
-			order.getOrderLines()
-					.forEach(orderLine -> productsList.add(orderLine.getProduct()));
-		});
+		ordersList.forEach(order -> order.getOrderLines().forEach(orderLine -> productsList.add(orderLine.getProduct())));
 		
-		Map<Product, Integer> popularProducts = new HashMap<Product, Integer>();
-		productsList.forEach(p -> {			
-			popularProducts.merge(p, 1, Integer::sum);
-		});
+		Map<Product, Integer> popularProducts = new HashMap<>();
+		productsList.forEach(p -> popularProducts.merge(p, 1, Integer::sum));
 		
 		Map<Product, Integer> returnMap = popularProducts.entrySet()
 									.stream()
@@ -44,11 +39,9 @@ public class OrderAnalyzeService {
 	
 	public static Optional<Customer> findMostValuableClient(Stream<Order> orders){
 		List<Order> orderList = orders.collect(Collectors.toList());
-		Map<Customer,BigDecimal> returnMap = new LinkedHashMap<Customer, BigDecimal>();
+		Map<Customer,BigDecimal> returnMap = new LinkedHashMap<>();
 		
-		orderList.forEach(order -> {
-			returnMap.merge(order.getCustomer(), order.getTotalOrder(), BigDecimal::add);			
-		});
+		orderList.forEach(order -> returnMap.merge(order.getCustomer(), order.getTotalOrder(), BigDecimal::add));
 		
 		Map<Customer,BigDecimal> orderedMap = returnMap.entrySet()
 				.stream()

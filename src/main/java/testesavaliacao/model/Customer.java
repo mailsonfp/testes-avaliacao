@@ -27,4 +27,5 @@ public class Customer implements Comparable<Customer> {
 	public String toString() {		
 		return "Customer: " + getName() + ", e-mail:" + getEmail();
 	}
+	
 }
