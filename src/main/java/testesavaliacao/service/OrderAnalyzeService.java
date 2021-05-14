@@ -50,4 +50,5 @@ public abstract class OrderAnalyzeService {
 		
 		return Optional.of(orderedMap.keySet().stream().collect(Collectors.toList()).get(0));
 	}
+	
 }
